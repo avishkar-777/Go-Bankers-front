@@ -1,1 +1,33 @@
-<h1>Welcome To Dashbord</h1>
+<div class="body">
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form>
+        <h3>Login Here</h3>
+    
+        <label for="username">Username</label>
+        <input type="text" placeholder="Email or Phone" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}" class="form-control">
+        <div *ngIf="emptyUser" class="error-message" style="color:red;">
+            Username should not be blank.
+        </div>
+        
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control">
+        <div *ngIf="emptyPass" class="error-message" style="color:red;">
+            Password should not be blank.
+        </div>
+
+        <button type="button" (click)="verifyUser()">Log In</button>
+        <div *ngIf="new" class="error-message" style="color:red;">
+            Email not registered.
+        </div>
+        <div *ngIf="notMatch" class="error-message" style="color:red;">
+            Email not registered.
+        </div>
+        <div class="register">
+            <p>Don't have an Account?</p><a routerLink="/user">Register Here</a>
+        </div>
+    </form>
+</div>
+

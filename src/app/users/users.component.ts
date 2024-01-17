@@ -18,8 +18,14 @@ export class UsersComponent {
   email : String = "";
   userId : number = 0;
   password : String = "";
-  Base_URL : String = "https://gobankersnew-production.up.railway.app/api/v1/goBankers"
-
+  
+  // Base_URL : String = "https://gobankersnew-production.up.railway.app/api/v1/goBankers"
+  Base_URL : String = "http://localhost:8080/api/v1/goBankers";
+  showFirstNameError : Boolean = false;
+  lastNameError : Boolean = false;
+  mobNoError : Boolean = false;
+  emailError : Boolean = false;
+  passwordError : Boolean = false;
 
   constructor(private http: HttpClient)
   {
@@ -40,6 +46,36 @@ export class UsersComponent {
 
     registerUser()
     {
+       if(!this.firstName && !this.lastName && !this.mobileNo && !this.email && !this.password){
+        this.showFirstNameError = true;
+        this.lastNameError = true;
+        this.mobNoError = true;
+        this.emailError = true;
+        this.passwordError = true;
+
+       }
+      
+      if (!this.firstName) {
+        this.showFirstNameError = true;
+        return;
+      }
+      if (!this.lastName) {
+        this.lastNameError = true;
+        return;
+      }
+      if (!this.mobileNo) {
+        this.mobNoError = true;
+        return;
+      }
+      if (!this.email) {
+        this.emailError = true;
+        return;
+      }
+      if (!this.password) {
+        this.passwordError = true;
+        return;
+      }  
+
       let bodyData = {
         firstName : this.firstName,
         middleName : this.middleName,
@@ -70,6 +106,12 @@ export class UsersComponent {
       this.email = '';
       this.password = '';
       this.userId = 0;
+      this.showFirstNameError = false;
+      this.lastNameError = false;
+      this.mobNoError = false;
+      this.emailError = false;
+      this.passwordError = false;
+
     }
 
 
@@ -87,6 +129,28 @@ export class UsersComponent {
 
     updateUser()
     {
+
+      if (!this.firstName) {
+        this.showFirstNameError = true;
+        return;
+      }
+      if (!this.lastName) {
+        this.lastNameError = true;
+        return;
+      }
+      if (!this.mobileNo) {
+        this.mobNoError = true;
+        return;
+      }
+      if (!this.email) {
+        this.emailError = true;
+        return;
+      }
+      if (!this.password) {
+        this.passwordError = true;
+        return;
+      }  
+
       let bodyData = {
         userId : this.userId,
         firstName : this.firstName,
